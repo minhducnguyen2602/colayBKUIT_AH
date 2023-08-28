@@ -8,94 +8,39 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div class = "header1">
-      <div class = "teamname">
-        BKUIT_AH
+    <div class = "header1" style="max-width: 59em;">
+        <div class = "teamname">
+          BKUIT_AH
+        </div>
+  
+        <div>Member:
+          <ul>1. Nguyễn Minh Đức (UIT)</ul>
+          <ul>2. Nguyễn Thanh Trường (UIT)</ul>
+          <ul>3. Lê Công Tuấn (BKU)</ul>
+          <ul>4. Phan Duy Chương (BKU)</ul>
+        </div>
       </div>
+      <div class = "header2">
+        <section>
+            <h2 style="text-align: center;">CONTROL ROBOT WITH HAND GESTURE</h2>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <video id="videoElement" autoplay muted></video>
+                <canvas id="canvasElement"></canvas>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <textarea 
+                disabled
+                name=""
+                id="messageView"
+                cols="20"
+                rows="20"
+              ></textarea>
+              </div>
 
-      <div>Member:
-        <ul>1. Nguyễn Minh Đức (UIT)</ul>
-        <ul>2. Nguyễn Thanh Trường (UIT)</ul>
-        <ul>3. Lê Công Tuấn (BKU)</ul>
-        <ul>4. Phan Duy Chương (BKU)</ul>
+            <button id="openWebSocketButton">Open</button>
+            <button id="stopButton" onclick="window.location.href = 'index.html';">Stop</button>
+          </section>
       </div>
-    </div>
-    <div id="container">
-      <header>
-        <h1 style="text-align: center;">
-          <!-- <a href="https://agilertc.com" title="Wifi Keyboard Control"
-            >CoLearn Web</a
-          > -->
-          <span>REMOTE AI HAND GESTURE CONTROL</span>
-        </h1>
-      </header>
-
-      <main>
-        <section>
-          <h2>CONNECT TO ROBOT</h2>
-          <label for="robotSelect">Robot profile: </label>
-          <select id="robotSelect">
-            <!-- <option value="ESP_CW_001">ESP_CW_001</option> -->
-            <option value="RPI_BW_001">RPI_BW_001</option>
-            <!-- <option value="RPI_CL_001">RPI_CL_001</option>
-            <option value="RPI_CL_002">RPI_CL_002</option>
-            <option value="RPI_CW_001">RPI_CW_001</option>
-            <option value="RPI_HA_001">RPI_HA_001</option>
-            <option value="RPI_HW_001">RPI_HW_001</option>
-            <option value="JTSN_HW_001">JTSN_HW_001</option> -->
-          </select>
-          <button id="pairButton">Pairing</button>
-          <br />
-          <label for="">Connected Robot Name is </label>
-          <input
-            type="text"
-            id="robotNameInput"
-            value=""
-            placeholder=""
-            disabled
-          />
-        </section>
-
-        <section>
-          <h2>Send the media server information to robot.</h2>
-          <label for="">SSID: </label>
-          <input type="text" id="ssidInput" value="" placeholder="" />
-
-          <label for="">Password: </label>
-          <input type="password" id="passwordInput" value="" placeholder="" />
-
-          <label for="">Host: </label>
-          <input type="text" id="hostInput" value="" placeholder="" />
-
-          <label for="">Port: </label>
-          <input type="number" id="portInput" value="" placeholder="" />
-
-          <br />
-
-          <label for="">Channel Name: </label>
-          <input type="text" id="channelInput" placeholder="" />
-
-          <button id="sendMediaServerInfoButton">Send</button>
-        </section>
-
-        <section>
-          <a href="remote.html" style="background-color: blue; color: white; padding: 10px 20px; text-decoration: none;">Send control command using hand gesture</a>
-
-          <!-- <div class="box">
-            <video id="videoElement" autoplay muted></video>
-            <textarea
-              disabled
-              name=""
-              id="messageView"
-              cols="20"
-              rows="20"
-            ></textarea>
-          </div> -->
-          <!-- <button id="openWebSocketButton" >Open</button>
-          <button id="stopButton">Stop</button> -->
-        </section>
-      </main>
-    </div>
-    <script type="module" src="./script.js"></script>
+      <script type="module" src="script.js"></script>
   </body>
 </html>
