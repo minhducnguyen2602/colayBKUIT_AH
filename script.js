@@ -133,7 +133,12 @@ function sendMediaServerInfo() {
     sendMessageToDeviceOverBluetooth(JSON.stringify(metricData), device);
   }
 }
+function handleChunk(frame) {
+  const canvasElement = document.getElementById("canvasElement");
 
+  drawVideoFrameOnCanvas(canvasElement, frame);
+  frame.close();
+}
 function openWebSocket() {
   const videoElement = document.getElementById("videoElement");
 
@@ -307,6 +312,15 @@ async function getVideoStream({
         }
       : true,
   });
+}
+
+function drawVideoFrameOnCanvas(canvas, frame) {
+  console.log("drawing video frame on canvas");
+  
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  ctx.drawImage(frame, 0, 0, canvas.width, canvas.height);
 }
 
 function displayMessage(messageContent) {
