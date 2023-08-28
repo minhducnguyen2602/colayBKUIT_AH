@@ -1,0 +1,196 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 1em;
+    word-break: break-word;
+    line-height: 1.6;
+    color: #444;
+  }
+  
+  .teamname{
+    display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+
+  .header1 {
+    margin: 0 auto;
+    max-width: 60em;
+    padding: 1em 1.5em 1.3em 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .header2 {
+    margin: 0 auto;
+    max-width: 60em;
+    padding: 1em 1em 1.3em 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+    justify-content: center;
+  }
+
+
+  a {
+    color: #1d6eee;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #3d85c6;
+    text-decoration: underline;
+  }
+  
+  h1 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 1.5em;
+    margin: 0 0 0.8em 0;
+    padding: 0 0 0.2em 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  h2 {
+    color: #444;
+    font-weight: 500;
+    font-size: 1.3em;
+    margin-block: 0.5em;
+  }
+  
+  p {
+    font-weight: 300;
+    font-size: 1em;
+    margin-block: 0.5em;
+  }
+  
+  /* Components */
+  .hidden {
+    display: none;
+  }
+  
+  .highlight {
+    background-color: #f0f0f0;
+    font-size: 1.2em;
+    margin: 0 0 30px 0;
+    padding: 0.8em 1.5em;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .warning {
+    color: red;
+    font-weight: 400;
+  }
+  
+  button {
+    background-color: #567bff;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.8em;
+    margin: 0 0 1em 0;
+    padding: 0.5em 1.2em;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #4568c8;
+  }
+  
+  button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  canvas {
+    background-color: #f0f0f0;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  code {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    background-color: #f5f5f5;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+  }
+  
+  div#container {
+    margin: 0 auto;
+    max-width: 60em;
+    padding: 1em 1.5em 1.3em 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  div#links a {
+    display: block;
+    margin: 0 0 1em 0;
+    color: #444;
+    font-size: 1.1em;
+  }
+  
+  div.box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    margin-bottom: 1em;
+  }
+  
+  select {
+    margin: 0 1em 1em 0;
+    position: relative;
+    top: -1px;
+  }
+  
+  input[type="radio"] {
+    position: relative;
+    top: -1px;
+  }
+  
+  textarea {
+    resize: none;
+    font-family: "Roboto", sans-serif;
+    width: 30%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5em;
+  }
+  
+  ul {
+    margin-block: 0;
+  }
+  
+  video {
+    background: #222;
+    margin: 0 0 20px 0;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  fieldset {
+    margin: 0 0 1em 0;
+    border: none;
+  }
+  
+  fieldset > select {
+    margin-top: 1em;
+  }
+  

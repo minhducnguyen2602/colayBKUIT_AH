@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remote AI Hand Gesture Control</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class = "header1" style="max-width: 59em;">
+        <div class = "teamname">
+          BKUIT_AH
+        </div>
+  
+        <div>Member:
+          <ul>1. Nguyễn Minh Đức (UIT)</ul>
+          <ul>2. Nguyễn Thanh Trường (UIT)</ul>
+          <ul>3. Lê Công Tuấn (BKU)</ul>
+          <ul>4. Phan Duy Chương (BKU)</ul>
+        </div>
+      </div>
+      <div class = "header2">
+        <section>
+            <h2 style="text-align: center;">CONTROL ROBOT WITH HAND GESTURE</h2>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <video id="videoElement" autoplay muted></video>
+                <video id="videoFromRobot" autoplay muted></video>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <textarea 
+                disabled
+                name=""
+                id="messageView"
+                cols="20"
+                rows="20"
+              ></textarea>
+              </div>
+
+            <button id="openWebSocketButton">Open</button>
+            <button id="stopButton" onclick="window.location.href = 'index.html';">Stop</button>
+          </section>
+      </div>
+      <script type="module" src="script.js"></script>
+  </body>
+</html>
