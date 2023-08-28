@@ -169,6 +169,10 @@ function openWebSocket() {
 function stop() {
   websocket.close();
   disconnectFromBluetoothDevice(device);
+  const videoDecoder = new VideoDecoder({
+    output: handleChunk,
+    error: (error) => console.error(error),
+  });
 }
 
 async function createGestureRecognizer() {
@@ -368,9 +372,19 @@ function keepWebSocketAlive(webSocket, interval) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  const videoElement = document.getElementById("videoElement");
+  const canvasElement = document.getElementById("canvasElement");
+
+  // Initialize gesture recognizer and other variables
+  gestureRecognizer = await createGestureRecognizer();
+
   pairButton.addEventListener("click", bluetoothPairing);
   sendMediaServerInfoButton.addEventListener("click", sendMediaServerInfo);
-  openWebSocketButton.addEventListener("click", openWebSocket);
-  stopButton.addEventListener("click", stop);
+  openWebSocketButton.addEventListener("click", () => {
+    openWebSocket(videoElement, canvasElement);
+  });
+  stopButton.addEventListener("click", () => {
+    stop(websocket, device);
+  });
 });
