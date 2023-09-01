@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Remote AI Hand Gesture Control</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   </head>
   <body>
     <div class = "header1">
@@ -92,7 +93,23 @@
                   id="messageView"
                   cols="20"
                   rows="20"
+                  
                 ></textarea>
+                <div class = "dieuhuong">
+                  <div class="hang1">
+                      <i class="bi bi-arrow-up-left-circle"></i>
+                      <i id = "up" class="bi bi-arrow-up-circle"></i>
+                      <i class="bi bi-arrow-up-right-circle"></i>  
+                  </div>
+                  <div class="hang2">
+                      <i id = "left" class="bi bi-arrow-left-circle"></i>
+                      <i id = "right" class="bi bi-arrow-right-circle"></i>
+                  </div>
+                  <div class="hang3">
+                      <i class="bi bi-arrow-down-left-circle"></i>
+                      <i id="down" class="bi bi-arrow-down-circle"></i>
+                      <i class="bi bi-arrow-down-right-circle"></i>
+                  </div>
                 </div>
   
               <button id="openWebSocketButton">Open</button>
