@@ -299,32 +299,32 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
             console.log("Dung");
           }
           //TienPhai
-          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thump_Right") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thump_Right")){
+          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Right") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Right")){
             gesture = "TienPhai";
             console.log("TienPhai");
           }
           //TienTrai
-          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thump_Left") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thump_Left")){
+          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Left") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Left")){
             gesture = "TienTrai";
             console.log("TienTrai");
           }
           //LuiPhai
-          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thump_Right") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thump_Right")){
+          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thumb_Right") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thumb_Right")){
             gesture = "LuiPhai";
             console.log("LuiPhai");
           }
           //LuiTrai
-          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thump_Left") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thump_Left")){
+          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thumb_Left") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thumb_Left")){
             gesture = "LuiTrai";
             console.log("LuiTrai");
           }
           //XoayPhai
-          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thump_Right") || (gesture_2 == "Open_Palm" && gesture_1 == "Thump_Right")){
+          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Right") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Right")){
             gesture = "XoayPhai";
             console.log("XoayPhai");
           }
           //XoayTrai
-          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thump_Left") || (gesture_2 == "Open_Palm" && gesture_1 == "Thump_Left")){
+          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Left") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Left")){
             gesture = "XoayTrai";
             console.log("XoayTrai");
           }
