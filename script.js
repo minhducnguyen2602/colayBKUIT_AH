@@ -65,11 +65,17 @@ function initializeVariables() {
   let gestureRecognizer;
   let runningMode = "IMAGE";
   let controlCommandMap = {
-    Closed_Fist: "N",
-    Open_Palm: "W",
-    Pointing_Up: "S",
-    Thumb_Up: "E",
-    Victory: "STOP",
+    Tien: "N",
+    Trai: "R",
+    Lui: "S",
+    Phai: "L",
+    XoayTrai: "CW",
+    XoayPhai: "CCW",
+    TienTrai: "FL",
+    TienPhai: "FR",
+    LuiTrai: "BR",
+    LuiPhai: "BL",
+    Dung: "STOP",
   };
   let lastDirection;
 
@@ -212,6 +218,18 @@ async function createGestureRecognizer() {
 }
 
 async function detectHandGestureFromVideo(gestureRecognizer, stream) {
+  let huongMap = {
+    "N": "up",
+    "S": "down",
+    "W": "left",
+    "E": "right",
+    "NW": "up-left",
+    "NE": "up-right",
+    "SW": "down-left",
+    "SE": "down-right",
+    "STOP": "stop",
+  }
+  const imageBlocks = document.querySelectorAll('.bi');
   if (!gestureRecognizer) return;
 
   const videoTrack = stream.getVideoTracks()[0];
@@ -228,10 +246,107 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
       } = detectedGestures;
 
       if (gestures[0]) {
-        const gesture = gestures[0][0].categoryName;
+        // Code o day ne`
+        let gesture = "Dung";
+        let direction = controlCommandMap[gesture];
+        if (gestures.length == 1) {
+          if (gestures[0][0].categoryName == "Pointing_Up") {
+            console.log("Tien");
+            gesture = "Tien";
+          }
+          if (gestures[0][0].categoryName == "Thumb_Left") {
+            gesture = "Trai";
+            console.log("Trai");
+          }
+          if (gestures[0][0].categoryName == "Thumb_Right") {
+            gesture = "Phai";
+            console.log("Phai");
+          }
+          if (gestures[0][0].categoryName == "Closed_Fist") {
+            gesture = "Lui";
+            console.log("Lui");
+          }
+          if (gestures[0][0].categoryName == "Open_Palm") {
+            gesture = "Dung";
+            console.log("Dung");
+          }
+        } else {
+          const gesture_1 = gestures[0][0].categoryName;
+          //const handednesses_1 = handednesses[0][0].categoryName;
+          const gesture_2 = gestures[1][0].categoryName;
+          //const handednesses_2 = handednesses[0][0].categoryName;
+          console.log("2 tay ne`");
+          console.log(gesture_1, gesture_2)
+          
+          if (gesture_1 == "Pointing_Up" && gesture_2 == "Pointing_Up"){
+            gesture = "Tien";
+            console.log("Tien");
+          }
+          if (gesture_1 == "Thumb_Right" && gesture_2 == "Thumb_Right"){
+            gesture = "Phai";
+            console.log("Phai");
+          }
+          if (gesture_1 == "Thumb_Left" && gesture_2 == "Thumb_Left"){
+            gesture = "Trai";
+            console.log("Trai");
+          }
+          if (gesture_1 == "Closed_Fist" && gesture_2 == "Closed_Fist"){
+            gesture = "Lui";
+            console.log("Lui");
+          }
+          if (gesture_1 == "Open_Palm" && gesture_2 == "Open_Palm"){
+            gesture = "Dung";
+            console.log("Dung");
+          }
+          //TienPhai
+          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thump_Right") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thump_Right")){
+            gesture = "TienPhai";
+            console.log("TienPhai");
+          }
+          //TienTrai
+          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thump_Left") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thump_Left")){
+            gesture = "TienTrai";
+            console.log("TienTrai");
+          }
+          //LuiPhai
+          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thump_Right") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thump_Right")){
+            gesture = "LuiPhai";
+            console.log("LuiPhai");
+          }
+          //LuiTrai
+          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thump_Left") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thump_Left")){
+            gesture = "LuiTrai";
+            console.log("LuiTrai");
+          }
+          //XoayPhai
+          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thump_Right") || (gesture_2 == "Open_Palm" && gesture_1 == "Thump_Right")){
+            gesture = "XoayPhai";
+            console.log("XoayPhai");
+          }
+          //XoayTrai
+          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thump_Left") || (gesture_2 == "Open_Palm" && gesture_1 == "Thump_Left")){
+            gesture = "XoayTrai";
+            console.log("XoayTrai");
+          }
+          console.log("---------------------------")
+        }
+        // if (Object.keys(controlCommandMap).includes(gesture)) {
+        //   direction = controlCommandMap[gesture];
+        //   }
+        const namee = huongMap[direction]
+        imageBlocks.forEach(function(element) {
+          if (element.id === namee) {
+            element.classList.add('selected');
+            setTimeout(() => {
+            element.classList.remove('selected');
+            },200)
+            
+          }
+        });
 
         if (Object.keys(controlCommandMap).includes(gesture)) {
           const direction = controlCommandMap[gesture];
+          
           if (direction !== lastDirection) {
             lastDirection = direction;
 

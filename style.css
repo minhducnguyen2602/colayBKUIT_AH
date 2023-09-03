@@ -227,6 +227,13 @@ h2.h2 {
     border-radius: 4px;
   }
   
+  .center_box {
+    display: flex;
+    justify-content: center;
+
+  }
+
+
   div#container {
     padding: 1em 1.5em 1.3em 1.5em;
     border: 1px solid #ccc;
@@ -242,7 +249,7 @@ h2.h2 {
   }
   
   div.box {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
     margin-bottom: 1em;

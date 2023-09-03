@@ -49,7 +49,7 @@
                       </select>
                       <button id="pairButton">Pairing</button>
                       <br />
-                      <label for="">Connected Robot Name is </label>
+                      <label for="">Connected Robot Name </label>
                       <input
                         type="text"
                         id="robotNameInput"
@@ -99,7 +99,12 @@
             <!-- End of Server Info -->
           </div>
           <!-- End of Left Box Info -->
-  
+          <div class = center_box>
+            <div class="button" style = "width: max-content; ">
+              <button id="openWebSocketButton">Open</button>
+              <button id="stopButton" onclick="window.location.href = 'index.html';">Stop</button>
+            </div>
+          </div>
           <!-- Right Box Info -->
           <div class="right_box">
             <div class = "header2">
@@ -109,11 +114,11 @@
                 <div class="input_box">
                   <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                     <div class="camera_input">
-                      <p class="h2" style="text-align: center;">CAMERA INPUT</p>
+                      <p class="h2" style="text-align: center;">USER CAMERA INPUT</p>
                       <video id="videoElement" autoplay muted></video>
                     </div>
                     <div class="canvas_input">
-                      <p class="h2" style="text-align: center;">WTF IS THIS</p>
+                      <p class="h2" style="text-align: center;">ROBOT CAMERA</p>
                       <canvas id="canvasElement" style="margin-bottom: 20px;"></canvas>
                     </div>
                   </div>
@@ -154,10 +159,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="button">
-                  <button id="openWebSocketButton">Open</button>
-                  <button id="stopButton" onclick="window.location.href = 'index.html';">Stop</button>
-                </div>
+                
               </section>
             </div>
           </div>
