@@ -12,7 +12,7 @@
     <!-- Slider Section -->
     <div class="slider">
       <header>
-        <h1 style="text-align: center;">
+        <h1 style="text-align: center; font-size: 32px;">
           <!-- <a href="https://agilertc.com" title="Wifi Keyboard Control"
             >CoLearn Web</a
           > -->
@@ -33,31 +33,31 @@
               <section>
                 <h2 class = "h2">CONNECT TO ROBOT</h2>
                 <div class="box">
-                  <div class="image_box">
-                    Image Placeholder
-                  </div>
+                  <img src="img/image_1.png" alt="">
                   <div class="connect_box">
-                    <label for="robotSelect">Robot profile: </label>
-                    <select id="robotSelect">
-                      <!-- <option value="ESP_CW_001">ESP_CW_001</option> -->
-                      <option value="RPI_BW_001">RPI_BW_001</option>
-                      <!-- <option value="RPI_CL_001">RPI_CL_001</option>
-                      <option value="RPI_CL_002">RPI_CL_002</option>
-                      <option value="RPI_CW_001">RPI_CW_001</option>
-                      <option value="RPI_HA_001">RPI_HA_001</option>
-                      <option value="RPI_HW_001">RPI_HW_001</option>
-                      <option value="JTSN_HW_001">JTSN_HW_001</option> -->
-                    </select>
-                    <button id="pairButton">Pairing</button>
-                    <br />
-                    <label for="">Connected Robot Name is </label>
-                    <input
-                      type="text"
-                      id="robotNameInput"
-                      value=""
-                      placeholder=""
-                      disabled
-                    />
+                    <div class="con">
+                      <label for="robotSelect">Robot profile: </label>
+                      <select id="robotSelect">
+                        <!-- <option value="ESP_CW_001">ESP_CW_001</option> -->
+                        <option value="RPI_BW_001">RPI_BW_001</option>
+                        <!-- <option value="RPI_CL_001">RPI_CL_001</option>
+                        <option value="RPI_CL_002">RPI_CL_002</option>
+                        <option value="RPI_CW_001">RPI_CW_001</option>
+                        <option value="RPI_HA_001">RPI_HA_001</option>
+                        <option value="RPI_HW_001">RPI_HW_001</option>
+                        <option value="JTSN_HW_001">JTSN_HW_001</option> -->
+                      </select>
+                      <button id="pairButton">Pairing</button>
+                      <br />
+                      <label for="">Connected Robot Name is </label>
+                      <input
+                        type="text"
+                        id="robotNameInput"
+                        value=""
+                        placeholder=""
+                        disabled
+                      />
+                    </div>
                   </div>
                 </div>
               </section>
@@ -133,20 +133,23 @@
                         ></textarea>
                        </div>
                     </div>
-                    <div class = "dieuhuong">
-                      <div class="hang1">
-                          <i class="bi bi-arrow-up-left-circle"></i>
-                          <i id = "up" class="bi bi-arrow-up-circle"></i>
-                          <i class="bi bi-arrow-up-right-circle"></i>  
-                      </div>
-                      <div class="hang2">
-                          <i id = "left" class="bi bi-arrow-left-circle"></i>
-                          <i id = "right" class="bi bi-arrow-right-circle"></i>
-                      </div>
-                      <div class="hang3">
-                          <i class="bi bi-arrow-down-left-circle"></i>
-                          <i id="down" class="bi bi-arrow-down-circle"></i>
-                          <i class="bi bi-arrow-down-right-circle"></i>
+                    <div class="arrow">
+                      <p class="h2" style="text-align: center;">DIRECTIONS</p>
+                      <div class = "dieuhuong">
+                        <div class="hang1">
+                            <i class="bi bi-arrow-up-left-circle"></i>
+                            <i id = "up" class="bi bi-arrow-up-circle"></i>
+                            <i class="bi bi-arrow-up-right-circle"></i>  
+                        </div>
+                        <div class="hang2">
+                            <i id = "left" class="bi bi-arrow-left-circle"></i>
+                            <i id = "right" class="bi bi-arrow-right-circle"></i>
+                        </div>
+                        <div class="hang3">
+                            <i class="bi bi-arrow-down-left-circle"></i>
+                            <i id="down" class="bi bi-arrow-down-circle"></i>
+                            <i class="bi bi-arrow-down-right-circle"></i>
+                        </div>
                       </div>
                     </div>
                   </div>
