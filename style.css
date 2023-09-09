@@ -1,3 +1,39 @@
+.logo {
+  display: inline-block;
+}
+.headertext {
+  display: flex;
+}
+
+.chiacot {
+  display: flex;
+  flex-direction: row;
+}
+
+.cot1 {
+  font-size: 30px;
+  align-self: center;
+}
+
+.arrow {
+  display: block;
+  justify-content: center;
+  width: auto;
+  margin: auto;
+  
+}
+
+.contact {
+  display: flex;
+  justify-content: left;
+}
+
+.text1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
 #imageContainer {
   display: flex;
   justify-content: center;
@@ -10,6 +46,7 @@
   height: fit-content;
   margin: auto;
   font-size: 30px;
+  padding: 10px;
 }
 .hang2 {
   display: flex;
@@ -23,6 +60,7 @@
 }
 
 body {
+    zoom:0.7;
     background-image: url(img/background.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -34,6 +72,7 @@ body {
     word-break: break-word;
     line-height: 1.6;
     color: #fff;
+    margin: 0 50px 0px 50px;
   }
 
 .main_page {
@@ -155,7 +194,7 @@ h2.h2 {
     font-size: 1.5em;
     margin: 0 0 0.8em 0;
     padding: 0 0 0.2em 0;
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
   }
   
   h2 {
@@ -274,6 +313,8 @@ h2.h2 {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 0.5em;
+    color:red;
+
   }
   
   ul {
@@ -363,11 +404,7 @@ h2.h2 {
     width: 50%;
   }
 
-  .arrow {
-    display: block;
-    justify-content: center;
-    width: 50%;
-  }
+ 
 
   .button {
     width: 100%;

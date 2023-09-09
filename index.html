@@ -4,21 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remote AI Hand Gesture Control</title>
+    <title>Remote Robot</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="img\logo.png" type="image/png">
   </head>
   <body>
     <!-- Slider Section -->
     <div class="slider">
-      <header>
-        <h1 style="text-align: center; font-size: 32px;">
-          <!-- <a href="https://agilertc.com" title="Wifi Keyboard Control"
-            >CoLearn Web</a
-          > -->
-          <span>REMOTE AI HAND GESTURE CONTROL</span>
-        </h1>
-      </header>
+
+      <div class = "headertext" style = "display: flex; justify-content: space-between;">
+        <img class = "logo" src = "img\logo.png" height="12%" width="12%">
+        <header class = "text1">
+          <h1 class = "text2" style="text-align: center; font-size: 280%; font-weight: bold; padding-right: 450px;">
+            <!-- <a href="https://agilertc.com" title="Wifi Keyboard Control"
+              >CoLearn Web</a
+            > -->
+            <span>REMOTE ROBOT WITH AI HAND GESTURE CONTROL</span>
+          </h1>
+        </header>
+      </div>
+      
     </div>
     <!-- End of Slider Section -->
 
@@ -67,7 +73,7 @@
             <!-- Server info -->
             <div class="server">
               <section>
-                <h2 class = "h2">Send the media server information to robot.</h2>
+                <h2 class = "h2">SENT THE MEDIA SERVER INFORMATION TO ROBOT</h2>
                 <div class = "server_box"> 
                   <div class="info_box">
                     <div class="text_box">
@@ -101,8 +107,9 @@
           <!-- End of Left Box Info -->
           <div class = center_box>
             <div class="button" style = "width: max-content; ">
-              <button id="openWebSocketButton">Open</button>
-              <button id="stopButton" onclick="window.location.href = 'index.html';">Stop</button>
+              <button id="openWebSocketButton">Start control</button>
+              <!-- <button id="stopButton" onclick="window.location.href = 'index.html';">Stop control</button> -->
+              <button id="stopButton">Stop control</button>
             </div>
           </div>
           <!-- Right Box Info -->
@@ -140,21 +147,31 @@
                     </div>
                     <div class="arrow">
                       <p class="h2" style="text-align: center;">DIRECTIONS</p>
-                      <div class = "dieuhuong">
-                        <div class="hang1">
-                            <i class="bi bi-arrow-up-left-circle"></i>
-                            <i id = "up" class="bi bi-arrow-up-circle"></i>
-                            <i class="bi bi-arrow-up-right-circle"></i>  
+                      <div class = chiacot>
+                        <div class = "cot1">
+                          <i id = "turn-left" class="bi bi-arrow-counterclockwise"></i>
                         </div>
-                        <div class="hang2">
-                            <i id = "left" class="bi bi-arrow-left-circle"></i>
-                            <i id = "right" class="bi bi-arrow-right-circle"></i>
-                        </div>
-                        <div class="hang3">
-                            <i class="bi bi-arrow-down-left-circle"></i>
-                            <i id="down" class="bi bi-arrow-down-circle"></i>
-                            <i class="bi bi-arrow-down-right-circle"></i>
-                        </div>
+                        <div class = "dieuhuong">
+                          <div class="hang1">
+                              <i id = "up-left" class="bi bi-arrow-up-left-circle"></i>
+                              <i id = "up" class="bi bi-arrow-up-circle"></i>
+                              <i id = "up-right" class="bi bi-arrow-up-right-circle"></i>  
+                          </div>
+                          <div class="hang2">
+                              <i id = "left" class="bi bi-arrow-left-circle"></i>
+                              <i id = "stop" class="bi bi-arrows-move"></i>
+                              <i id = "right" class="bi bi-arrow-right-circle"></i>
+                          </div>
+                          <div class="hang3">
+                              <i id="down-left" class="bi bi-arrow-down-left-circle"></i>
+                              <i id="down" class="bi bi-arrow-down-circle"></i>
+                              <i id="down-right" class="bi bi-arrow-down-right-circle"></i>                                                 
+                          </div>
+                      </div>
+                      <div class = "cot1">
+                        <i id = "turn-right" class="bi bi-arrow-clockwise"></i>
+                      </div>
+                      
                       </div>
                     </div>
                   </div>
@@ -171,7 +188,8 @@
     <!-- Footer Section -->
     <div class="footer">
       <div class = "team">
-        <div class="teamname">BKUIT_AH</div>
+        <div class="teamname">TEAM MEMBERS:</div>
+        
         <div class = "teammember">
           <div class = "box1">1. Nguyễn Minh Đức (UIT)</div>
           <div class = "box1">2. Nguyễn Thanh Trường (UIT)</div>
@@ -179,10 +197,17 @@
           <div class = "box2">4. Phan Duy Chương (BKU)</div>
         </div>
       </div>
-      <div class="contact">
-        Contact Us:
+      <div class="contact" style = "margin-right: 100px" >
+        <p>CONTACT US:</p>
+        <ul>
+          <li><p>Facebook: <a href="https://www.facebook.com/minduck.2602" style = "color: white">Nguyễn Minh Đức</a></li></p>
+          <li><p>Github: <a href="https://github.com/minhducnguyen2602" style = "color: white">https://github.com/minhducnguyen2602</p></li>
+          <li><p>Phone: 0123456789</p></li>
+          <li><p>Email: <a href="mailto:21520730@gm.uit.edu.vn" style = "color: white">21520730@gm.uit.edu.vn</a></p></li>
+        </ul>
       </div>
-    </div>
+      
+      
     <!-- End of Footer Section -->
     <script type="module" src="./script.js"></script>
   </body>

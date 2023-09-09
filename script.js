@@ -164,7 +164,7 @@ async function openWebSocket() {
     }
   };
 
-  displayMessage("Open Video WebSocket");
+  displayMessage("Start");
   const videoDecoder = new VideoDecoder({
     output: handleChunk,
     error: (error) => console.error(error),
@@ -210,10 +210,11 @@ async function createGestureRecognizer() {
   gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
     baseOptions: {
       modelAssetPath:
-        "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
+        "trainlailan1.task",
       delegate: "GPU",
     },
     runningMode: runningMode,
+    numHands: 2,
   });
 }
 
@@ -221,12 +222,14 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
   let huongMap = {
     "N": "up",
     "S": "down",
-    "W": "left",
-    "E": "right",
-    "NW": "up-left",
-    "NE": "up-right",
-    "SW": "down-left",
-    "SE": "down-right",
+    "L": "left",
+    "R": "right",
+    "FL": "up-left",
+    "FR": "up-right",
+    "BL": "down-left",
+    "BR": "down-right",
+    "CW": "turn-left",
+    "CCW": "turn-right",
     "STOP": "stop",
   }
   const imageBlocks = document.querySelectorAll('.bi');
@@ -244,95 +247,128 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
         handednesses,
         gestures,
       } = detectedGestures;
-
+      let gesture = "Dung";
       if (gestures[0]) {
         // Code o day ne`
-        let gesture = "Dung";
-        let direction = controlCommandMap[gesture];
+        gesture = "Dung";
         if (gestures.length == 1) {
-          if (gestures[0][0].categoryName == "Pointing_Up") {
+          gesture = gestures[0][0].categoryName;
+          let handednesses_1 = handednesses[0][0].categoryName;
+          // console.log("1 tay ne`");
+          // console.log(gesture, handednesses_1); 
+          if (gesture == "Thumb_Right" && handednesses_1 == "Left") gesture = "Thumb_Left";
+          else if (gesture == "Thumb_Left" && handednesses_1 == "Left") gesture = "Thumb_Right";
+          // console.log("Doi lai ne`");
+          // console.log(gesture);
+          // console.log("Di chuyen ne`");
+          if (gesture == "Pointing_Up") {
             console.log("Tien");
             gesture = "Tien";
           }
-          if (gestures[0][0].categoryName == "Thumb_Left") {
+          else if (gesture == "Thumb_Left") {
             gesture = "Trai";
             console.log("Trai");
           }
-          if (gestures[0][0].categoryName == "Thumb_Right") {
+          else if (gesture == "Thumb_Right") {
             gesture = "Phai";
             console.log("Phai");
           }
-          if (gestures[0][0].categoryName == "Closed_Fist") {
+          else if (gesture == "Close_Fist") {
             gesture = "Lui";
             console.log("Lui");
           }
-          if (gestures[0][0].categoryName == "Open_Palm") {
+          else if (gesture == "Open_Palm" || gesture == "None") {
             gesture = "Dung";
             console.log("Dung");
           }
+          console.log("-----------");
         } else {
-          const gesture_1 = gestures[0][0].categoryName;
-          //const handednesses_1 = handednesses[0][0].categoryName;
-          const gesture_2 = gestures[1][0].categoryName;
-          //const handednesses_2 = handednesses[0][0].categoryName;
-          console.log("2 tay ne`");
-          console.log(gesture_1, gesture_2)
-          
+          let gesture_1 = gestures[0][0].categoryName;
+          let gesture_2 = gestures[1][0].categoryName;
+          const handednesses_2 = handednesses[1][0].categoryName;
+          // console.log("2 tay ne`");
+          // console.log(gesture_1, gesture_2);
+          if (gesture_2 == "Thumb_Right" && handednesses_2 == "Left") gesture_2 = "Thumb_Left";
+          else if (gesture_2 == "Thumb_Left" && handednesses_2 == "Left") gesture_2 = "Thumb_Right";
+          // console.log("Doi lai ne`");
+          // console.log(gesture_1, gesture_2);  
+          // console.log("Di chuyen ne`");
+
+          if (gesture_1 == "None") gesture_1 = gesture_2;
+          if (gesture_2 == "None") gesture_2 = gesture_1;
+
+          //Tien
           if (gesture_1 == "Pointing_Up" && gesture_2 == "Pointing_Up"){
             gesture = "Tien";
             console.log("Tien");
           }
-          if (gesture_1 == "Thumb_Right" && gesture_2 == "Thumb_Right"){
+
+          //Phai
+          else if (gesture_1 == "Thumb_Right" && gesture_2 == "Thumb_Right"){
             gesture = "Phai";
             console.log("Phai");
           }
-          if (gesture_1 == "Thumb_Left" && gesture_2 == "Thumb_Left"){
+          
+          //Trai
+          else if (gesture_1 == "Thumb_Left" && gesture_2 == "Thumb_Left"){
             gesture = "Trai";
             console.log("Trai");
           }
-          if (gesture_1 == "Closed_Fist" && gesture_2 == "Closed_Fist"){
+
+          //Lui
+          else if (gesture_1 == "Close_Fist" && gesture_2 == "Close_Fist"){
             gesture = "Lui";
             console.log("Lui");
           }
-          if (gesture_1 == "Open_Palm" && gesture_2 == "Open_Palm"){
+
+          //Dung
+          else if (gesture_1 == "Open_Palm" && gesture_2 == "Open_Palm"){
             gesture = "Dung";
             console.log("Dung");
           }
+
           //TienPhai
-          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Right") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Right")){
+          else if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Right") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Right")){
             gesture = "TienPhai";
             console.log("TienPhai");
           }
+
           //TienTrai
-          if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Left") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Left")){
+          else if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Left") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Left")){
             gesture = "TienTrai";
             console.log("TienTrai");
           }
+
           //LuiPhai
-          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thumb_Right") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thumb_Right")){
+          else if ((gesture_1 == "Close_Fist" && gesture_2 == "Thumb_Right") || (gesture_2 == "Close_Fist" && gesture_1 == "Thumb_Right")){
             gesture = "LuiPhai";
             console.log("LuiPhai");
           }
+
           //LuiTrai
-          if ((gesture_1 == "Closed_Fist" && gesture_2 == "Thumb_Left") || (gesture_2 == "Closed_Fist" && gesture_1 == "Thumb_Left")){
+          else if ((gesture_1 == "Close_Fist" && gesture_2 == "Thumb_Left") || (gesture_2 == "Close_Fist" && gesture_1 == "Thumb_Left")){
             gesture = "LuiTrai";
             console.log("LuiTrai");
           }
+
           //XoayPhai
-          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Right") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Right")){
+          else if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Right") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Right")){
             gesture = "XoayPhai";
             console.log("XoayPhai");
           }
+
           //XoayTrai
-          if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Left") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Left")){
+          else if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Left") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Left")){
             gesture = "XoayTrai";
             console.log("XoayTrai");
           }
-          console.log("---------------------------")
+          else {
+            gesture = "Dung";
+            console.log("Dung");
+          }
+          //console.log("---------------------------")
         }
-        // if (Object.keys(controlCommandMap).includes(gesture)) {
-        //   direction = controlCommandMap[gesture];
-        //   }
+        let direction = controlCommandMap[gesture];
         const namee = huongMap[direction]
         imageBlocks.forEach(function(element) {
           if (element.id === namee) {
@@ -356,10 +392,15 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
             };
             if (websocket && websocket.readyState === WebSocket.OPEN) {
               websocket.send(JSON.stringify(controlCommand));
-              displayMessage(`Send '${direction}' command`);
+              displayMessage(`'${gesture}'`);
             }
           }
         }
+      }
+      else 
+      {
+        gesture = "Dung";
+        console.log("Dung");
       }
     });
   }
