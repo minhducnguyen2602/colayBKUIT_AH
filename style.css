@@ -1,3 +1,58 @@
+.popup-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style cho popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.popup-button:hover {
+  color: white;
+  background-color: #16527a;
+  text-decoration: none;
+}
+
+/* Style cho nút đóng */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 50px;
+}
+
+.close-button:hover {
+  text-decoration: none;
+}
+
+/* Style cho nội dung trong popup */
+.popup-content {
+  color: black;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
 .logo {
   display: inline-block;
 }
@@ -401,7 +456,7 @@ h2.h2 {
   }
 
   .result_screen {
-    width: 50%;
+    width: 40%;
   }
 
  

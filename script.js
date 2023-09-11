@@ -66,9 +66,9 @@ function initializeVariables() {
   let runningMode = "IMAGE";
   let controlCommandMap = {
     Tien: "N",
-    Trai: "R",
+    Trai: "L",
     Lui: "S",
-    Phai: "L",
+    Phai: "R",
     XoayTrai: "CW",
     XoayPhai: "CCW",
     TienTrai: "FL",
@@ -401,6 +401,34 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
       {
         gesture = "Dung";
         console.log("Dung");
+        let direction = controlCommandMap[gesture];
+        const namee = huongMap[direction]
+        imageBlocks.forEach(function(element) {
+          if (element.id === namee) {
+            element.classList.add('selected');
+            setTimeout(() => {
+            element.classList.remove('selected');
+            },200)
+            
+          }
+        });
+
+        if (Object.keys(controlCommandMap).includes(gesture)) {
+          const direction = controlCommandMap[gesture];
+          
+          if (direction !== lastDirection) {
+            lastDirection = direction;
+
+            const controlCommand = {
+              type: "control",
+              direction,
+            };
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+              websocket.send(JSON.stringify(controlCommand));
+              displayMessage(`'${gesture}'`);
+            }
+          }
+        }
       }
     });
   }

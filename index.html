@@ -121,7 +121,7 @@
                 <div class="input_box">
                   <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                     <div class="camera_input">
-                      <p class="h2" style="text-align: center;">USER CAMERA INPUT</p>
+                      <p class="h2" style="text-align: center;">USER CAMERA</p>
                       <video id="videoElement" autoplay muted></video>
                     </div>
                     <div class="canvas_input">
@@ -134,7 +134,7 @@
                 <div class="navigation_box">
                   <div class="result_screen_box">
                     <div class="result_screen">
-                      <p class="h2" style="text-align: center;">RESULT</p>
+                      <p class="h2" style="text-align: center;">CONTROL DECRIPTION</p>
                         <div style="display: flex; flex-direction: column; align-items: center;">
                           <textarea 
                           disabled
@@ -145,8 +145,21 @@
                         ></textarea>
                        </div>
                     </div>
+                    <div class = "thu">
+                      <!-- Nút mở popup -->
+                      <a href="#" class="popup-button" id="open-popup">CONTROL TUTORIAL</a>
+
+                      <!-- Cửa sổ popup -->
+                      <div class="popup" id="my-popup">
+                          <div class="popup-content">
+                              <a href="#" class="close-button" id="close-popup">&times;</a>
+                              <h2>HƯỚNG DẪN ĐIỀU KHIỂN ROBOT BẰNG CỬ CHỈ TAY</h2>
+                              <img src = "img\xongxoa.png">
+                          </div>
+                      </div>
+                    </div>
                     <div class="arrow">
-                      <p class="h2" style="text-align: center;">DIRECTIONS</p>
+                      <p class="h2" style="text-align: center;">DIRECTION</p>
                       <div class = chiacot>
                         <div class = "cot1">
                           <i id = "turn-left" class="bi bi-arrow-counterclockwise"></i>
@@ -201,8 +214,10 @@
         <p>CONTACT US:</p>
         <ul>
           <li><p>Facebook: <a href="https://www.facebook.com/minduck.2602" style = "color: white">Nguyễn Minh Đức</a></li></p>
-          <li><p>Github: <a href="https://github.com/minhducnguyen2602" style = "color: white">https://github.com/minhducnguyen2602</p></li>
-          <li><p>Phone: 0123456789</p></li>
+          <li><p>Github: <a href="https://github.com/minhducnguyen2602" style = "color: white">https://github.com/minhducnguyen2602</a></p></li>
+
+          <li><p>Phone: 0362180502</p></li>
+
           <li><p>Email: <a href="mailto:21520730@gm.uit.edu.vn" style = "color: white">21520730@gm.uit.edu.vn</a></p></li>
         </ul>
       </div>
@@ -210,5 +225,19 @@
       
     <!-- End of Footer Section -->
     <script type="module" src="./script.js"></script>
+    <script>
+      // JavaScript để mở và đóng popup
+      const openButton = document.getElementById("open-popup");
+      const closeButton = document.getElementById("close-popup");
+      const popup = document.getElementById("my-popup");
+
+      openButton.addEventListener("click", function () {
+          popup.style.display = "block";
+      });
+
+      closeButton.addEventListener("click", function () {
+          popup.style.display = "none";
+      });
+  </script>
   </body>
 </html>
