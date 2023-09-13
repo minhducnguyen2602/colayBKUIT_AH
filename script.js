@@ -224,12 +224,12 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
     "S": "down",
     "L": "left",
     "R": "right",
-    "FL": "up-left",
-    "FR": "up-right",
+    "FL": "up-right",
+    "FR": "up-left",
     "BL": "down-left",
     "BR": "down-right",
-    "CW": "turn-left",
-    "CCW": "turn-right",
+    "CW": "turn-right",
+    "CCW": "turn-left",
     "STOP": "stop",
   }
   const imageBlocks = document.querySelectorAll('.bi');
