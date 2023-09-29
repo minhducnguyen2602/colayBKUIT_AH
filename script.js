@@ -4,22 +4,6 @@ import {
   DrawingUtils,
 } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.2";
 
-var checkbox = document.getElementById("toggle");
-
-
-
-// Lấy tham chiếu đến phần tử div để hiển thị kết quả
-
-var bienbatdau = false
-// Thêm sự kiện click cho button
-function showCheckboxValue() {
-  // Kiểm tra giá trị checked của checkbox
-  bienbatdau = checkbox.checked;
-  console.log(bienbatdau);
-  return bienbatdau
-}
-
-
 const DEFAULT_ROBOT_PROFILE = "RPI_BW_001";
 /**
  * ESP_CW_001
@@ -89,8 +73,8 @@ function initializeVariables() {
     XoayPhai: "CCW",
     TienTrai: "FL",
     TienPhai: "FR",
-    LuiTrai: "BL",
-    LuiPhai: "BR",
+    LuiTrai: "BR",
+    LuiPhai: "BL",
     Dung: "STOP",
   };
   let lastDirection;
@@ -158,7 +142,7 @@ function sendMediaServerInfo() {
 
 async function openWebSocket() {
   const videoElement = document.getElementById("videoElement");
-  videoElement.style.transform = "scaleX(-1)";
+
   const path = `pang/ws/sub?channel=instant&name=${networkConfig.channel_name}&track=video&mode=bundle`;
   const serverURL = `${
     window.location.protocol.replace(/:$/, "") === "https" ? "wss" : "ws"
@@ -238,19 +222,19 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
   let huongMap = {
     "N": "up",
     "S": "down",
-    "L": "right",
-    "R": "left",
+    "L": "left",
+    "R": "right",
     "FL": "up-right",
     "FR": "up-left",
-    "BL": "down-right",
-    "BR": "down-left",
+    "BL": "down-left",
+    "BR": "down-right",
     "CW": "turn-right",
     "CCW": "turn-left",
     "STOP": "stop",
   }
   const imageBlocks = document.querySelectorAll('.bi');
   if (!gestureRecognizer) return;
-  let selectedElement = null;
+
   const videoTrack = stream.getVideoTracks()[0];
   const capturedImage = new ImageCapture(videoTrack);
   while (true) {
@@ -264,178 +248,170 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
         gestures,
       } = detectedGestures;
       let gesture = "Dung";
-      if (showCheckboxValue() == true)
-      {
-        if (gestures[0]) {
-          // Code o day ne`
-          gesture = "Dung";
-          if (gestures.length == 1) {
-            gesture = gestures[0][0].categoryName;
-            let handednesses_1 = handednesses[0][0].categoryName;
-            // console.log("1 tay ne`");
-            // console.log(gesture, handednesses_1); 
-            if (gesture == "Thumb_Right" && handednesses_1 == "Left") gesture = "Thumb_Left";
-            else if (gesture == "Thumb_Left" && handednesses_1 == "Left") gesture = "Thumb_Right";
-            // console.log("Doi lai ne`");
-            // console.log(gesture);
-            // console.log("Di chuyen ne`");
-            if (gesture == "Pointing_Up") {
-              console.log("Tien");
-              gesture = "Tien";
-            }
-            else if (gesture == "Thumb_Left") {
-              gesture = "Trai";
-              console.log("Trai");
-            }
-            else if (gesture == "Thumb_Right") {
-              gesture = "Phai";
-              console.log("Phai");
-            }
-            else if (gesture == "Close_Fist") {
-              gesture = "Lui";
-              console.log("Lui");
-            }
-            else if (gesture == "Open_Palm" || gesture == "None") {
-              gesture = "Dung";
-              console.log("Dung");
-            }
-            console.log("-----------");
-          } else {
-            let gesture_1 = gestures[0][0].categoryName;
-            let gesture_2 = gestures[1][0].categoryName;
-            const handednesses_2 = handednesses[1][0].categoryName;
-            // console.log("2 tay ne`");
-            // console.log(gesture_1, gesture_2);
-            if (gesture_2 == "Thumb_Right" && handednesses_2 == "Left") gesture_2 = "Thumb_Left";
-            else if (gesture_2 == "Thumb_Left" && handednesses_2 == "Left") gesture_2 = "Thumb_Right";
-            // console.log("Doi lai ne`");
-            // console.log(gesture_1, gesture_2);  
-            // console.log("Di chuyen ne`");
-  
-            if (gesture_1 == "None") gesture_1 = gesture_2;
-            if (gesture_2 == "None") gesture_2 = gesture_1;
-  
-            //Tien
-            if (gesture_1 == "Pointing_Up" && gesture_2 == "Pointing_Up"){
-              gesture = "Tien";
-              console.log("Tien");
-            }
-  
-            //Phai
-            else if (gesture_1 == "Thumb_Right" && gesture_2 == "Thumb_Right"){
-              gesture = "Phai";
-              console.log("Phai");
-            }
-            
-            //Trai
-            else if (gesture_1 == "Thumb_Left" && gesture_2 == "Thumb_Left"){
-              gesture = "Trai";
-              console.log("Trai");
-            }
-  
-            //Lui
-            else if (gesture_1 == "Close_Fist" && gesture_2 == "Close_Fist"){
-              gesture = "Lui";
-              console.log("Lui");
-            }
-  
-            //Dung
-            else if (gesture_1 == "Open_Palm" && gesture_2 == "Open_Palm"){
-              gesture = "Dung";
-              console.log("Dung");
-            }
-  
-            //TienPhai
-            else if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Right") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Right")){
-              gesture = "TienPhai";
-              console.log("TienPhai");
-            }
-  
-            //TienTrai
-            else if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Left") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Left")){
-              gesture = "TienTrai";
-              console.log("TienTrai");
-            }
-  
-            //LuiPhai
-            else if ((gesture_1 == "Close_Fist" && gesture_2 == "Thumb_Right") || (gesture_2 == "Close_Fist" && gesture_1 == "Thumb_Right")){
-              gesture = "LuiPhai";
-              console.log("LuiPhai");
-            }
-  
-            //LuiTrai
-            else if ((gesture_1 == "Close_Fist" && gesture_2 == "Thumb_Left") || (gesture_2 == "Close_Fist" && gesture_1 == "Thumb_Left")){
-              gesture = "LuiTrai";
-              console.log("LuiTrai");
-            }
-  
-            //XoayPhai
-            else if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Right") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Right")){
-              gesture = "XoayPhai";
-              console.log("XoayPhai");
-            }
-  
-            //XoayTrai
-            else if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Left") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Left")){
-              gesture = "XoayTrai";
-              console.log("XoayTrai");
-            }
-            else {
-              gesture = "Dung";
-              console.log("Dung");
-            }
-            //console.log("---------------------------")
+      if (gestures[0]) {
+        // Code o day ne`
+        gesture = "Dung";
+        if (gestures.length == 1) {
+          gesture = gestures[0][0].categoryName;
+          let handednesses_1 = handednesses[0][0].categoryName;
+          // console.log("1 tay ne`");
+          // console.log(gesture, handednesses_1); 
+          if (gesture == "Thumb_Right" && handednesses_1 == "Left") gesture = "Thumb_Left";
+          else if (gesture == "Thumb_Left" && handednesses_1 == "Left") gesture = "Thumb_Right";
+          // console.log("Doi lai ne`");
+          // console.log(gesture);
+          // console.log("Di chuyen ne`");
+          if (gesture == "Pointing_Up") {
+            console.log("Tien");
+            gesture = "Tien";
           }
-          let direction = controlCommandMap[gesture];
-          const namee = huongMap[direction]
-          imageBlocks.forEach(function(element) {
-            if (element.id === namee) {
-              element.classList.add('selected');
-              setTimeout(() => {
-              element.classList.remove('selected');
-              },200)
-              
-            }
-          });
-  
-          if (Object.keys(controlCommandMap).includes(gesture)) {
-            const direction = controlCommandMap[gesture];
+          else if (gesture == "Thumb_Left") {
+            gesture = "Trai";
+            console.log("Trai");
+          }
+          else if (gesture == "Thumb_Right") {
+            gesture = "Phai";
+            console.log("Phai");
+          }
+          else if (gesture == "Close_Fist") {
+            gesture = "Lui";
+            console.log("Lui");
+          }
+          else if (gesture == "Open_Palm" || gesture == "None") {
+            gesture = "Dung";
+            console.log("Dung");
+          }
+          console.log("-----------");
+        } else {
+          let gesture_1 = gestures[0][0].categoryName;
+          let gesture_2 = gestures[1][0].categoryName;
+          const handednesses_2 = handednesses[1][0].categoryName;
+          // console.log("2 tay ne`");
+          // console.log(gesture_1, gesture_2);
+          if (gesture_2 == "Thumb_Right" && handednesses_2 == "Left") gesture_2 = "Thumb_Left";
+          else if (gesture_2 == "Thumb_Left" && handednesses_2 == "Left") gesture_2 = "Thumb_Right";
+          // console.log("Doi lai ne`");
+          // console.log(gesture_1, gesture_2);  
+          // console.log("Di chuyen ne`");
+
+          if (gesture_1 == "None") gesture_1 = gesture_2;
+          if (gesture_2 == "None") gesture_2 = gesture_1;
+
+          //Tien
+          if (gesture_1 == "Pointing_Up" && gesture_2 == "Pointing_Up"){
+            gesture = "Tien";
+            console.log("Tien");
+          }
+
+          //Phai
+          else if (gesture_1 == "Thumb_Right" && gesture_2 == "Thumb_Right"){
+            gesture = "Phai";
+            console.log("Phai");
+          }
+          
+          //Trai
+          else if (gesture_1 == "Thumb_Left" && gesture_2 == "Thumb_Left"){
+            gesture = "Trai";
+            console.log("Trai");
+          }
+
+          //Lui
+          else if (gesture_1 == "Close_Fist" && gesture_2 == "Close_Fist"){
+            gesture = "Lui";
+            console.log("Lui");
+          }
+
+          //Dung
+          else if (gesture_1 == "Open_Palm" && gesture_2 == "Open_Palm"){
+            gesture = "Dung";
+            console.log("Dung");
+          }
+
+          //TienPhai
+          else if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Right") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Right")){
+            gesture = "TienPhai";
+            console.log("TienPhai");
+          }
+
+          //TienTrai
+          else if ((gesture_1 == "Pointing_Up" && gesture_2 == "Thumb_Left") || (gesture_2 == "Pointing_Up" && gesture_1 == "Thumb_Left")){
+            gesture = "TienTrai";
+            console.log("TienTrai");
+          }
+
+          //LuiPhai
+          else if ((gesture_1 == "Close_Fist" && gesture_2 == "Thumb_Right") || (gesture_2 == "Close_Fist" && gesture_1 == "Thumb_Right")){
+            gesture = "LuiPhai";
+            console.log("LuiPhai");
+          }
+
+          //LuiTrai
+          else if ((gesture_1 == "Close_Fist" && gesture_2 == "Thumb_Left") || (gesture_2 == "Close_Fist" && gesture_1 == "Thumb_Left")){
+            gesture = "LuiTrai";
+            console.log("LuiTrai");
+          }
+
+          //XoayPhai
+          else if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Right") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Right")){
+            gesture = "XoayPhai";
+            console.log("XoayPhai");
+          }
+
+          //XoayTrai
+          else if ((gesture_1 == "Open_Palm" && gesture_2 == "Thumb_Left") || (gesture_2 == "Open_Palm" && gesture_1 == "Thumb_Left")){
+            gesture = "XoayTrai";
+            console.log("XoayTrai");
+          }
+          else {
+            gesture = "Dung";
+            console.log("Dung");
+          }
+          //console.log("---------------------------")
+        }
+        let direction = controlCommandMap[gesture];
+        const namee = huongMap[direction]
+        imageBlocks.forEach(function(element) {
+          if (element.id === namee) {
+            element.classList.add('selected');
+            setTimeout(() => {
+            element.classList.remove('selected');
+            },200)
             
-            if (direction !== lastDirection) {
-              lastDirection = direction;
-  
-              const controlCommand = {
-                type: "control",
-                direction,
-              };
-              if (websocket && websocket.readyState === WebSocket.OPEN) {
-                websocket.send(JSON.stringify(controlCommand));
-                displayMessage(`'${gesture}'`);
-              }
+          }
+        });
+
+        if (Object.keys(controlCommandMap).includes(gesture)) {
+          const direction = controlCommandMap[gesture];
+          
+          if (direction !== lastDirection) {
+            lastDirection = direction;
+
+            const controlCommand = {
+              type: "control",
+              direction,
+            };
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+              websocket.send(JSON.stringify(controlCommand));
+              displayMessage(`'${gesture}'`);
             }
           }
         }
-        else 
-        {
-           // Biến để lưu trạng thái đã chọn
-  
-          gesture = "Dung";
-          console.log("Dung");
-          let direction = controlCommandMap[gesture];
-          const namee = huongMap[direction];
-          imageBlocks.forEach(function(element) {
-            if (element.id === namee) {
-              if (selectedElement !== null) {
-                selectedElement.classList.remove('selected');
-              }
-              element.classList.add('selected');
-              selectedElement = element; // Cập nhật phần tử đã chọn
-            }
-          });
-
       }
-      
-
+      else 
+      {
+        gesture = "Dung";
+        console.log("Dung");
+        let direction = controlCommandMap[gesture];
+        const namee = huongMap[direction]
+        imageBlocks.forEach(function(element) {
+          if (element.id === namee) {
+            element.classList.add('selected');
+            setTimeout(() => {
+            element.classList.remove('selected');
+            },200)
+            
+          }
+        });
 
         if (Object.keys(controlCommandMap).includes(gesture)) {
           const direction = controlCommandMap[gesture];
@@ -610,7 +586,6 @@ function keepWebSocketAlive(webSocket, interval) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  checkbox.addEventListener("click", showCheckboxValue);
   pairButton.addEventListener("click", bluetoothPairing);
   sendMediaServerInfoButton.addEventListener("click", sendMediaServerInfo);
   openWebSocketButton.addEventListener("click", openWebSocket);
