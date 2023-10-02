@@ -1,3 +1,29 @@
+.toggle-btn {
+  width: 50px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-btn::before {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.3s;
+}
+
+#toggle:checked + .toggle-btn::before {
+  left: 20px;
+}
+
 .popup-button {
   background-color: #3498db;
   color: #fff;
