@@ -226,11 +226,11 @@ async function createGestureRecognizer() {
   gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
     baseOptions: {
       modelAssetPath:
-        "trainlailan1.task",
+        "trainfinalround1.task",
       delegate: "GPU",
     },
     runningMode: runningMode,
-    numHands: 2,
+    numHands: 1,
   });
 }
 

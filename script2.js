@@ -226,7 +226,7 @@ async function createGestureRecognizer() {
   gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
     baseOptions: {
       modelAssetPath:
-        "trainlailan1.task",
+        "trainfinalround1.task",
       delegate: "GPU",
     },
     runningMode: runningMode,
@@ -276,12 +276,12 @@ async function detectHandGestureFromVideo(gestureRecognizer, stream) {
             gesture = "Tien";
           }
           else if (gesture == "Left") {
-            gesture = "Trai";
-            console.log("Trai");
+            gesture = "XoayTrai";
+            console.log("XoayTrai");
           }
           else if (gesture == "Right") {
-            gesture = "Phai";
-            console.log("Phai");
+            gesture = "XoayPhai";
+            console.log("XoayPhai");
           }
           else if (gesture == "Backward") {
             gesture = "Lui";
