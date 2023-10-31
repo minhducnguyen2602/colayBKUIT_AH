@@ -6,7 +6,7 @@ import {
 
 var checkbox = document.getElementById("toggle");
 
-
+var test_ne = true
 
 // Lấy tham chiếu đến phần tử div để hiển thị kết quả
 
