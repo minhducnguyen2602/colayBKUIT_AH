@@ -9,7 +9,7 @@ var checkbox = document.getElementById("toggle");
 var test_ne = true
 
 // Lấy tham chiếu đến phần tử div để hiển thị kết quả
-
+var thuxem = 1
 var bienbatdau = false
 // Thêm sự kiện click cho button
 function showCheckboxValue() {
